@@ -8,5 +8,14 @@ namespace LemonadeStand
 {
     class Lemon
     {
+        int daysTillSpoiled;
+        int purchasePrice;
+
+        public Lemon()
+        {
+
+        }
+
+        //methods
     }
 }
