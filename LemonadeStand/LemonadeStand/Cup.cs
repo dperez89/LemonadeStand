@@ -8,5 +8,13 @@ namespace LemonadeStand
 {
     class Cup
     {
+        int purchasePrice;
+
+        public Cup()
+        {
+
+        }
+
+        //methods
     }
 }
