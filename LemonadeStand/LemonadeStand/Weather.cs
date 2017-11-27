@@ -8,5 +8,14 @@ namespace LemonadeStand
 {
     class Weather
     {
+        int customerGenerationMod;
+        int temperature;
+
+        public Weather()
+        {
+
+        }
+        
+        //methods
     }
 }
