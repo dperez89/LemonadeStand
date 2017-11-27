@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     class Day
     {
-        //variables
+        Weather weather;
 
         public Day()
         {
