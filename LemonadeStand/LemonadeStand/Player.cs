@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     class Player
     {
+        public string name;
         Inventory inventory;
         Recipe recipe;
         int money;
@@ -18,5 +19,9 @@ namespace LemonadeStand
         }
 
         //methods
+        public void SetName()
+        {
+            name = Console.ReadLine();
+        }
     }
 }
