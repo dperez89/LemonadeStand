@@ -8,5 +8,13 @@ namespace LemonadeStand
 {
     class Sugar
     {
+        int purchasePrice;
+
+        public Sugar()
+        {
+
+        }
+
+        //methods
     }
 }
