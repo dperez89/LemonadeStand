@@ -8,5 +8,16 @@ namespace LemonadeStand
 {
     class Inventory
     {
+        Lemon lemons;
+        Sugar sugars;
+        Ice ice;
+        Cup cups;
+
+        public Inventory()
+        {
+
+        }
+
+        //methods
     }
 }
