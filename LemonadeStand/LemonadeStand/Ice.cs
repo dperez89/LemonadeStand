@@ -8,5 +8,14 @@ namespace LemonadeStand
 {
     class Ice
     {
+        int daysTillMelted;
+        int purchasePrice;
+
+        public Ice()
+        {
+
+        }
+
+        //methods
     }
 }
