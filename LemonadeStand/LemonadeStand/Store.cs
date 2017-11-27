@@ -15,6 +15,22 @@ namespace LemonadeStand
 
         }
 
+        public void SellLemons()
+        {
+
+        }
+        public void SellIce()
+        {
+
+        }
+        public void SellSugar()
+        {
+
+        }
+        public void SellCups()
+        {
+
+        }
 
     }
 }
