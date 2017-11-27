@@ -61,5 +61,9 @@ namespace LemonadeStand
             Console.Clear();
             
         }
+        public void DisplayPlayerSetNameSuccessMessage(Player player1)
+        {
+            Console.WriteLine("Hello " + player1.name + ", let's get this lemonade stand up and running!");
+        }
     }
 }

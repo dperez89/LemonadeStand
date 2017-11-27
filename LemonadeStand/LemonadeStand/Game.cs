@@ -47,16 +47,10 @@ namespace LemonadeStand
                     break;
             }
         }
-
-        private void SetPlayerName()
-        {
-            ui.DisplayPlayerNameChangeMessage();
-            player1.SetName();
-        }
         private void RunGame()
         {
-            SetPlayerName();
-            Console.WriteLine("You have set your player name to " + player1.name);
+            player1.SetName(ui);
+            ui.DisplayPlayerSetNameSuccessMessage(player1);
 
         }
     }

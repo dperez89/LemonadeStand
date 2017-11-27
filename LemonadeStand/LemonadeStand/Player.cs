@@ -19,8 +19,9 @@ namespace LemonadeStand
         }
 
         //methods
-        public void SetName()
+        public void SetName(UI ui)
         {
+            ui.DisplayPlayerNameChangeMessage();
             name = Console.ReadLine();
         }
     }
