@@ -8,6 +8,17 @@ namespace LemonadeStand
 {
     class Recipe
     {
+        Lemon lemons;
+        Sugar sugars;
+        Ice ice;
+        Cup cups;
+        int recipeGrade;
 
+        public Recipe()
+        {
+
+        }
+
+        //methods
     }
 }
