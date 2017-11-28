@@ -13,15 +13,16 @@ namespace LemonadeStand
         List<Customer> customers;
         Day day;
         UI ui;
+        Random random;
         List<string> initialMenuOptions = new List<string> { "start", "load", "exit" };
-        int numberOfDaysInGame;
+        int numberOfDaysInGame = 7; //NEEDS TO BE ASSIGNED BY THE PLAYER
         public Game()
         {
             player = new Player();
             store = new Store();
             customers = new List<Customer>();
-            day = new Day();
             ui = new UI();
+            random = new Random();
         }
 
         //methods
@@ -34,7 +35,10 @@ namespace LemonadeStand
                 case "start":
                     Console.Clear();
                     Console.WriteLine("You've started a game!");
-                    RunGame();
+                    //RunGame();
+                    day = new Day(random);
+                    Console.WriteLine(day.weather.weather);
+                    Console.WriteLine(day.weather.customerGenMod);
                     break;
 
                 case "load":
@@ -53,10 +57,14 @@ namespace LemonadeStand
             player.SetName(ui);
             ui.DisplayPlayerSetNameSuccessMessage(player);
             ui.DisplayPlayerCurrentInfo(player);
-            // display message and get user choice for time frame of their game (7 days at least)
-            // display message to emphasize the beginning of the game
+            ui.DisplayPlayerMenuExplanation();
+            ui.DisplayBeginGameMessage();
             // ***********BEGIN LOOP FOR MAIN GAME UNTIL NUMBER OF DAYS IN GAME IS SATISFIED***********
+            while (day.dayNumber <= numberOfDaysInGame)
+            {
+                while (true)
                 // ***********BEGIN LOOP FOR PLAYER MENU UNTIL 'BEGIN' IS SELECTED***********
+                {
                 // display information needed by the player (Day's number, day's weather, current inventory, current money
                     // & current recipe)
                 // display menu options ::relative to methods::
@@ -75,8 +83,10 @@ namespace LemonadeStand
                             //generate customers
                             //have each customer evaluated against recipe and lemonade price values to determine
                               //either the success of a sale or if the customer doesn't buy any lemonade.
+                }
                 //***********END LOOP FOR PLAYER MENU WHEN 'BEGIN' IS SELECTED***********
                 // Display results of the day (Day's number, Profit/Loss of the day, Profit/Loss of the game so far)
+            }
             // ***********END LOOP FOR MAIN GAME WHEN NUMBER OF DAYS IN GAME IS SATISFIED***********
         }
     }

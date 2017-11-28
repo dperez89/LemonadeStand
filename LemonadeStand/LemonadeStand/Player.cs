@@ -9,9 +9,9 @@ namespace LemonadeStand
     class Player
     {
         public string name;
-        Inventory inventory;
-        Recipe recipe;
-        int money;
+        public Inventory inventory;
+        public Recipe recipe;
+        public int money = 100;
 
         public Player()
         {

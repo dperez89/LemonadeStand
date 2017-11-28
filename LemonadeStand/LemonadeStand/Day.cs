@@ -8,11 +8,12 @@ namespace LemonadeStand
 {
     class Day
     {
-        Weather weather;
+        public Weather weather;
+        public int dayNumber = 1;
 
-        public Day()
+        public Day(Random random)
         {
-
+            weather = new Weather(random);
         }
 
         //methods
