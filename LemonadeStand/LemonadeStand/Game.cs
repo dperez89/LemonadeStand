@@ -39,6 +39,7 @@ namespace LemonadeStand
                     day = new Day(random);
                     Console.WriteLine(day.weather.weather);
                     Console.WriteLine(day.weather.customerGenMod);
+                    Console.WriteLine(day.weather.temperature);
                     break;
 
                 case "load":

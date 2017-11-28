@@ -18,14 +18,14 @@ namespace LemonadeStand
 
         public Weather(Random random)
         {
-            weather = GetWeather(random);
+            SetWeather(random);
             SetCustomerGenMod(weather, weathers, weatherCustomerGenMods);
+            SetTemperature(random);
         }
-        public string GetWeather(Random random)
+        public void SetWeather(Random random)
         {
             weatherNumber = random.Next(0, weathers.Count);
             weather = weathers.ElementAt(weatherNumber);
-            return weather;
         }
         private void SetCustomerGenMod(string weather, List<string> weathers, List<int> weatherCustomerGenMods)
         {
@@ -37,6 +37,10 @@ namespace LemonadeStand
                     break;
                 }
             }           
+        }
+        private void SetTemperature(Random random)
+        {
+            temperature = random.Next(35, 101);
         }
     }
 }
