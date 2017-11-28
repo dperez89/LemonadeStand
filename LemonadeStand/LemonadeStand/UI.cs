@@ -42,9 +42,9 @@ namespace LemonadeStand
             return userInput;
         }
 
-        private bool ValidateUserInput(string userInput, List<string> initialMenuOptions, Game game)
+        private bool ValidateUserInput(string userInput, List<string> options, Game game)
         {
-            if(initialMenuOptions.Contains(userInput))
+            if(options.Contains(userInput))
             {
                 isInputValid = true;
                 return isInputValid;
@@ -61,9 +61,13 @@ namespace LemonadeStand
             Console.Clear();
             
         }
-        public void DisplayPlayerSetNameSuccessMessage(Player player1)
+        public void DisplayPlayerSetNameSuccessMessage(Player player)
         {
-            Console.WriteLine("Hello " + player1.name + ", let's get this lemonade stand up and running!");
+            Console.WriteLine("Hello " + player.name + ", let's get this lemonade stand up and running!");
+        }
+        public void DisplayPlayerCurrentInfo(Player player)
+        {
+
         }
     }
 }
