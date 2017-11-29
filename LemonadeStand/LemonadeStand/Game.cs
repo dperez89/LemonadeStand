@@ -37,9 +37,7 @@ namespace LemonadeStand
                     Console.Clear();
                     Console.WriteLine("You've started a game!");
                     //RunGame();
-                    day.GenerateThirtyOneDays(random);
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
-                    ui.DisplayPlayerMenu();
+                    ui.DisplayStoreMenu(store, player);
                     Console.ReadKey();
                     break;
 

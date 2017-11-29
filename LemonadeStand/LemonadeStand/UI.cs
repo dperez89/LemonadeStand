@@ -118,5 +118,15 @@ namespace LemonadeStand
             Console.WriteLine("WEATHER - keep a track of the weather to make the best decisions!");
             Console.WriteLine("BEGIN - get the day started and make some money!");
         }
+        public void DisplayStoreMenu(Store store, Player player)
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to the Store!");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("1.) Lemons - $" + store.lemons.purchasePrice + "       You currently have " + player.inventory.lemons.Count + " lemons.");
+            Console.WriteLine("2.) Sugar - $" + store.sugars.purchasePrice + "        You currently have " + player.inventory.sugars.Count + " sugars.");
+            Console.WriteLine("3.) Ice Cubes - $" + store.ice.purchasePrice + "    You currently have " + player.inventory.ice.Count + " ice cubes.");
+            Console.WriteLine("4.) Cups - $" + store.cups.purchasePrice + "         You currently have " + player.inventory.cups.Count + " cups.");
+        }
     }
 }

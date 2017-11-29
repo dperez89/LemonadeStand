@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     class Sugar
     {
-        int purchasePrice;
+        public int purchasePrice = 2;
 
         public Sugar()
         {

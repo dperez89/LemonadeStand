@@ -8,8 +8,7 @@ namespace LemonadeStand
 {
     class Ice
     {
-        int daysTillMelted;
-        int purchasePrice;
+        public int purchasePrice = 1;
 
         public Ice()
         {
@@ -17,5 +16,9 @@ namespace LemonadeStand
         }
 
         //methods
+        public void MeltIce()
+        {
+
+        }
     }
 }

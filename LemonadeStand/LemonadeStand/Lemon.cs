@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Lemon
     {
         int daysTillSpoiled;
-        int purchasePrice;
+        public int purchasePrice = 3;
 
         public Lemon()
         {

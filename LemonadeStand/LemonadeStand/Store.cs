@@ -8,11 +8,17 @@ namespace LemonadeStand
 {
     class Store
     {
-        //variables
+        public Lemon lemons;
+        public Ice ice;
+        public Sugar sugars;
+        public Cup cups;
 
         public Store()
         {
-
+            lemons = new Lemon();
+            ice = new Ice();
+            sugars = new Sugar();
+            cups = new Cup();
         }
 
         public void SellLemons()
