@@ -14,15 +14,16 @@ namespace LemonadeStand
         Day day;
         UI ui;
         Random random;
-        List<string> initialMenuOptions = new List<string> { "start", "load", "exit" };
+        List<string> initialMenuOptions = new List<string> { "start", "load" };
         int numberOfDaysInGame = 7; //NEEDS TO BE ASSIGNED BY THE PLAYER
         public Game()
         {
+            random = new Random();
             player = new Player();
+            day = new Day(random);
             store = new Store();
             customers = new List<Customer>();
             ui = new UI();
-            random = new Random();
         }
 
         //methods
@@ -36,15 +37,10 @@ namespace LemonadeStand
                     Console.Clear();
                     Console.WriteLine("You've started a game!");
                     //RunGame();
-                    day = new Day(random);
-                    Console.WriteLine(day.weather.weather);
-                    Console.WriteLine(day.weather.customerGenMod);
-                    Console.WriteLine(day.weather.temperature);
-                    break;
-
-                case "load":
-                    Console.Clear();
-                    Console.WriteLine("You've Loaded a game!");
+                    day.GenerateThirtyOneDays(random);
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
+                    ui.DisplayPlayerMenu();
+                    Console.ReadKey();
                     break;
 
                 case "exit":
@@ -57,7 +53,7 @@ namespace LemonadeStand
         {
             player.SetName(ui);
             ui.DisplayPlayerSetNameSuccessMessage(player);
-            ui.DisplayPlayerCurrentInfo(player);
+            ui.DisplayPlayerStartInfo(player);
             ui.DisplayPlayerMenuExplanation();
             ui.DisplayBeginGameMessage();
             // ***********BEGIN LOOP FOR MAIN GAME UNTIL NUMBER OF DAYS IN GAME IS SATISFIED***********
@@ -66,20 +62,14 @@ namespace LemonadeStand
                 while (true)
                 // ***********BEGIN LOOP FOR PLAYER MENU UNTIL 'BEGIN' IS SELECTED***********
                 {
-                // display information needed by the player (Day's number, day's weather, current inventory, current money
-                    // & current recipe)
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day); // does not currently report accurate DayNumber
+                    ui.DisplayPlayerMenu();
                 // display menu options ::relative to methods::
-                    // STORE / RECIPE / WEATHER / SAVE / BEGIN
-                        //WEATHER
-                            //View next day's weather or the week's weather
+                    // STORE / RECIPE / WEATHER / BEGIN
                         //STORE
                             //Display inventory items and their prices
                             //BUY option
                                 //adds to player inventory, reduces player money
-                        //RECIPE
-                            //CHANGE inventory item amounts for recipe
-                        //SAVE
-                            //Saves game through SQLConnect method.
                         //BEGIN
                             //generate customers
                             //have each customer evaluated against recipe and lemonade price values to determine

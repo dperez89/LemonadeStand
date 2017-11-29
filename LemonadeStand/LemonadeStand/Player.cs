@@ -15,7 +15,7 @@ namespace LemonadeStand
 
         public Player()
         {
-
+            inventory = new Inventory();
         }
 
         //methods

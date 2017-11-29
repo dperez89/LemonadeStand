@@ -65,7 +65,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("Hello " + player.name + ", let's get this lemonade stand up and running!");
         }
-        public void DisplayPlayerCurrentInfo(Player player)
+        public void DisplayPlayerStartInfo(Player player)
         {
             Console.WriteLine("Alright, " + player.name + ", you currently have $" + player.money + " and nothing in your inventory.");
         }
@@ -95,6 +95,28 @@ namespace LemonadeStand
             Console.WriteLine("Time to get to work!");
             Console.WriteLine(" Press any key to continue...");
             Console.ReadKey();
+        }
+        public void DisplayCurrentPlayerAndDayInfo(Player player, Day day)
+        {
+            Console.WriteLine("Player: " + player.name);
+            Console.WriteLine("Money: $" + player.money);
+            Console.WriteLine("Day: " + day.dayNumber);
+            Console.WriteLine("WEATHER");
+            Console.WriteLine("Type: " + day.weather.weather);
+            Console.WriteLine("Temperature: " + day.weather.temperature);
+            Console.WriteLine("INVENTORY");
+            Console.WriteLine("Lemons: " + player.inventory.lemons.Count);
+            Console.WriteLine("Sugars: " + player.inventory.sugars.Count);
+            Console.WriteLine("Ice Cubes: " + player.inventory.ice.Count);
+            Console.WriteLine("Cups: " + player.inventory.cups.Count);
+            Console.WriteLine(Environment.NewLine);
+        }
+        public void DisplayPlayerMenu()
+        {
+            Console.WriteLine("STORE - make sure to buy what you need!");
+            Console.WriteLine("RECIPE - use your ingredients to make the best lemonade in town!");
+            Console.WriteLine("WEATHER - keep a track of the weather to make the best decisions!");
+            Console.WriteLine("BEGIN - get the day started and make some money!");
         }
     }
 }
