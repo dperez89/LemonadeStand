@@ -11,7 +11,8 @@ namespace LemonadeStand
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.GetStartLoadOrExit(game);
+            game.TestMethod(game);
+            //game.GetStartLoadOrExit(game);
             Console.ReadKey();
         }
     }

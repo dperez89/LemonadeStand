@@ -41,9 +41,21 @@ namespace LemonadeStand
             }
             return userInput;
         }
+        public string GetUserStorePurchaseInput()
+        {
+            Console.WriteLine("Please enter a quantity");
+            userInput = Console.ReadLine();
+            isInputValid = ValidateUserStorePurchaseInput(userInput);
+            if (!isInputValid)
+            {
+                GetUserStorePurchaseInput();
+            }
+            return userInput;
+        }
 
         private bool ValidateUserInput(string userInput, List<string> options, Game game)
         {
+            isInputValid = false;
             if(options.Contains(userInput))
             {
                 isInputValid = true;
@@ -53,6 +65,25 @@ namespace LemonadeStand
             {
                 return isInputValid;
             }
+        }
+        private bool ValidateUserStorePurchaseInput(string userInput)
+        {
+            isInputValid = false;
+            int i;
+            if (Int32.TryParse(userInput, out i))
+            {
+                isInputValid = true;
+                return isInputValid;
+            }
+            else
+            {
+                return isInputValid;
+            }
+        }
+        public int ConvertStringToNumber(string userInput, int userQuantity)
+        {
+            userQuantity = Int32.Parse(userInput);
+            return userQuantity;
         }
         private void DisplayErrorMessage()
         {
@@ -83,9 +114,6 @@ namespace LemonadeStand
             Console.WriteLine("However, you'll want to be aware of the WEATHER conditions of the day when making your");
             Console.WriteLine("business decisions. You have to take into account that customers may not have as great a");
             Console.WriteLine("thirst on cooler rainy days as they might on hotter sunny days.");
-            Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("Need to step away from your thriving lemonade stand for now? No worries!");
-            Console.WriteLine("You can SAVE your progress and return at a later time!");
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("When you feel you're ready to start the business day, all you have to do is BEGIN");
             Console.WriteLine("and start selling your lemonade to the masses!");
@@ -123,10 +151,17 @@ namespace LemonadeStand
             Console.Clear();
             Console.WriteLine("Welcome to the Store!");
             Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("You currently have $" + player.money);
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("1.) Lemons - $" + store.lemons.purchasePrice + "       You currently have " + player.inventory.lemons.Count + " lemons.");
             Console.WriteLine("2.) Sugar - $" + store.sugars.purchasePrice + "        You currently have " + player.inventory.sugars.Count + " sugars.");
             Console.WriteLine("3.) Ice Cubes - $" + store.ice.purchasePrice + "    You currently have " + player.inventory.ice.Count + " ice cubes.");
             Console.WriteLine("4.) Cups - $" + store.cups.purchasePrice + "         You currently have " + player.inventory.cups.Count + " cups.");
+        }
+        public void DisplayDesiredQuantityRequest()
+        {
+            Console.WriteLine("How many would you like to buy?");
+            Console.WriteLine(Environment.NewLine);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace LemonadeStand
         UI ui;
         Random random;
         List<string> initialMenuOptions = new List<string> { "start", "load" };
+        List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4" };
         int numberOfDaysInGame = 7; //NEEDS TO BE ASSIGNED BY THE PLAYER
         public Game()
         {
@@ -27,6 +28,35 @@ namespace LemonadeStand
         }
 
         //methods
+        public void TestMethod(Game game)
+        {
+            ui.DisplayStoreMenu(store, player);
+            string userInput = ui.GetUserInput(storeMenuOptions, game);
+            switch(userInput)
+            {
+                case "1":
+                    store.SellLemons(player, ui);
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
+                    break;
+
+                case "2":
+                    store.SellSugar(player, ui);
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
+                    break;
+
+                case "3":
+                    store.SellIce(player, ui);
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
+                    break;
+
+                case "4":
+                    store.SellCups(player, ui);
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
+                    break;
+            }
+            Console.ReadKey();
+            TestMethod(game);
+        }
         public void GetStartLoadOrExit(Game game)
         {
             ui.DisplayInitialMenu();
@@ -37,8 +67,6 @@ namespace LemonadeStand
                     Console.Clear();
                     Console.WriteLine("You've started a game!");
                     //RunGame();
-                    ui.DisplayStoreMenu(store, player);
-                    Console.ReadKey();
                     break;
 
                 case "exit":
