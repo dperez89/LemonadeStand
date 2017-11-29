@@ -16,6 +16,7 @@ namespace LemonadeStand
         Random random;
         List<string> initialMenuOptions = new List<string> { "start", "load" };
         List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4" };
+        List<string> playerMenuOptions = new List<string> { "store", "recipe", "weather", "begin" };
         int numberOfDaysInGame = 7; //NEEDS TO BE ASSIGNED BY THE PLAYER
         public Game()
         {
@@ -28,34 +29,9 @@ namespace LemonadeStand
         }
 
         //methods
-        public void TestMethod(Game game)
+        public void TestMethod(Game game) //INDEPENDENT METHOD FOR TESTING METHODS UNDER CONSTRUCTION
         {
-            ui.DisplayStoreMenu(store, player);
-            string userInput = ui.GetUserInput(storeMenuOptions, game);
-            switch(userInput)
-            {
-                case "1":
-                    store.SellLemons(player, ui);
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
-                    break;
 
-                case "2":
-                    store.SellSugar(player, ui);
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
-                    break;
-
-                case "3":
-                    store.SellIce(player, ui);
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
-                    break;
-
-                case "4":
-                    store.SellCups(player, ui);
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day);
-                    break;
-            }
-            Console.ReadKey();
-            TestMethod(game);
         }
         public void GetStartLoadOrExit(Game game)
         {
@@ -66,7 +42,7 @@ namespace LemonadeStand
                 case "start":
                     Console.Clear();
                     Console.WriteLine("You've started a game!");
-                    //RunGame();
+                    RunGame(game);
                     break;
 
                 case "exit":
@@ -75,21 +51,24 @@ namespace LemonadeStand
                     break;
             }
         }
-        private void RunGame()
+        private void RunGame(Game game)
         {
             player.SetName(ui);
             ui.DisplayPlayerSetNameSuccessMessage(player);
             ui.DisplayPlayerStartInfo(player);
             ui.DisplayPlayerMenuExplanation();
             ui.DisplayBeginGameMessage();
+            day.GenerateSevenDays(random);
             // ***********BEGIN LOOP FOR MAIN GAME UNTIL NUMBER OF DAYS IN GAME IS SATISFIED***********
-            while (day.dayNumber <= numberOfDaysInGame)
+            for (int i = 0;  day.week.ElementAt(i).dayNumber < numberOfDaysInGame; i++)
             {
                 while (true)
                 // ***********BEGIN LOOP FOR PLAYER MENU UNTIL 'BEGIN' IS SELECTED***********
                 {
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day); // does not currently report accurate DayNumber
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day, day.week.ElementAt(i).dayNumber); // does not currently report accurate DayNumber
                     ui.DisplayPlayerMenu();
+                    ui.GetUserInput(playerMenuOptions, game);
+                    break;
                 // display menu options ::relative to methods::
                     // STORE / RECIPE / WEATHER / BEGIN
                         //STORE

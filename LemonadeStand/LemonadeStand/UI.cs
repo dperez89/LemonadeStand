@@ -124,11 +124,11 @@ namespace LemonadeStand
             Console.WriteLine(" Press any key to continue...");
             Console.ReadKey();
         }
-        public void DisplayCurrentPlayerAndDayInfo(Player player, Day day)
+        public void DisplayCurrentPlayerAndDayInfo(Player player, Day day ,int dayNumber)
         {
             Console.WriteLine("Player: " + player.name);
             Console.WriteLine("Money: $" + player.money);
-            Console.WriteLine("Day: " + day.dayNumber);
+            Console.WriteLine("Day: " + dayNumber);
             Console.WriteLine("WEATHER");
             Console.WriteLine("Type: " + day.weather.weather);
             Console.WriteLine("Temperature: " + day.weather.temperature);
