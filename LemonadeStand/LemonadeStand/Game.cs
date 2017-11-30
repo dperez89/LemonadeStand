@@ -12,18 +12,20 @@ namespace LemonadeStand
         Store store;
         List<Customer> customers;
         Day day;
+        PointOfSale pos;
         UI ui;
         Random random;
-        List<string> initialMenuOptions = new List<string> { "start", "load" };
+        List<string> initialMenuOptions = new List<string> { "start", "exit" };
         List<string> recipeMenuOptions = new List<string> { "1", "2", "3", "4" }; 
         List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4","5" };
         List<string> playerMenuOptions = new List<string> { "store", "recipe", "weather", "begin" };
-        int numberOfDaysInGame = 7; //NEEDS TO BE ASSIGNED BY THE PLAYER
+        int numberOfDaysInGame = 7;
         public Game()
         {
             random = new Random();
             player = new Player();
             day = new Day(random);
+            pos = new PointOfSale();
             store = new Store();
             customers = new List<Customer>();
             ui = new UI();
@@ -32,7 +34,17 @@ namespace LemonadeStand
         //methods
         public void TestMethod(Game game) //INDEPENDENT METHOD FOR TESTING METHODS UNDER CONSTRUCTION
         {
-            player.SetRecipe(ui, recipeMenuOptions, game);
+            GenerateCustomers();
+        }
+        public void GenerateCustomers()
+        {
+            int j = random.Next(70, 130);
+            for(int i = 0; i <= j; i++)
+            {
+                customers.Add(new Customer(random));
+                Console.WriteLine(customers.ElementAt(i).willingnessToBuy);
+            }
+            Console.ReadKey();
         }
         public void GetStartLoadOrExit(Game game)
         {
@@ -63,14 +75,12 @@ namespace LemonadeStand
             ui.DisplayPlayerMenuExplanation();
             ui.DisplayBeginGameMessage();
             day.GenerateSevenDays(random);
-            // ***********BEGIN LOOP FOR MAIN GAME UNTIL NUMBER OF DAYS IN GAME IS SATISFIED***********
-            for (int i = 0;  day.week.ElementAt(i).dayNumber < numberOfDaysInGame; i++)
+            for (int i = 0; day.week.ElementAt(i).dayNumber <= numberOfDaysInGame; i++)
             {
                 beginIsSelected = false;
                 while (!beginIsSelected)
-                // ***********BEGIN LOOP FOR PLAYER MENU UNTIL 'BEGIN' IS SELECTED***********
                 {
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day, day.week.ElementAt(i).dayNumber); // does not currently report accurate DayNumber
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day, day.week.ElementAt(i).dayNumber);
                     ui.DisplayPlayerMenu();
                     userInput = ui.GetUserInput(playerMenuOptions, game);
                     switch (userInput)
@@ -84,10 +94,11 @@ namespace LemonadeStand
                             break;
 
                         case "weather":
-
+                            player.ViewWeather(ui, numberOfDaysInGame, day);
                             break;
 
                         case "begin":
+                            GenerateCustomers();
                             beginIsSelected = true;
                             break;
                     }

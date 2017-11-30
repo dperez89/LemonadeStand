@@ -8,14 +8,22 @@ namespace LemonadeStand
 {
     class Customer
     {
-        int willingnessToBuy;
+        public int willingnessToBuy;
+        public int customerWillBuyThreshold;
 
 
-        public Customer()
+        public Customer(Random random)
         {
-
+            willingnessToBuy = GenerateWillingnessToBuy(random);
         }
 
         //methods
+        private int GenerateWillingnessToBuy(Random random)
+        {
+            int i;
+
+            i = random.Next(30, 70);
+            return i;
+        }
     }
 }

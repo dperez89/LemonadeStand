@@ -25,13 +25,9 @@ namespace LemonadeStand
             ui.DisplayPlayerNameChangeMessage();
             name = Console.ReadLine();
         }
-        public void ViewWeather()
+        public void ViewWeather(UI ui, int numberOfDaysInGame, Day day)
         {
-
-        }
-        private void GenerateCupsOfLemonade()
-        {
-            inventory.cupsOfLemonade.Add(new Lemonade(recipe.RecipeGrade));
+            ui.DisplayWeatherForecast(day, numberOfDaysInGame);
         }
         public void SetRecipe(UI ui, List<string> options, Game game)
         {

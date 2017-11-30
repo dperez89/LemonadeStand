@@ -12,7 +12,7 @@ namespace LemonadeStand
         public int temperature;
         public int weatherNumber;
         public string weather;
-        List<string> weathers = new List<string> { "Rainy", "Sunny", "Overcast" };
+        public List<string> weathers = new List<string> { "Rainy", "Sunny", "Overcast" };
         List<int> weatherCustomerGenMods = new List<int> { -10, 10, 0 };
 
 

@@ -23,7 +23,6 @@ namespace LemonadeStand
             Console.WriteLine("Welcome to your very own Lemonade Stand!");
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("START");
-            Console.WriteLine("LOAD");
             Console.WriteLine("EXIT");
         }
         public void DisplayPlayerNameChangeMessage()
@@ -189,6 +188,7 @@ namespace LemonadeStand
                 Console.WriteLine("Weather Type: " + day.week.ElementAt(i).weather.weather);
                 Console.WriteLine(Environment.NewLine);
             }
+            Console.ReadKey();
         }
     }
 }
