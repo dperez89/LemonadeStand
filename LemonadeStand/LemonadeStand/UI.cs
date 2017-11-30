@@ -157,10 +157,22 @@ namespace LemonadeStand
             Console.WriteLine("2.) Sugar - $" + store.sugars.purchasePrice + "        You currently have " + player.inventory.sugars.Count + " sugars.");
             Console.WriteLine("3.) Ice Cubes - $" + store.ice.purchasePrice + "    You currently have " + player.inventory.ice.Count + " ice cubes.");
             Console.WriteLine("4.) Cups - $" + store.cups.purchasePrice + "         You currently have " + player.inventory.cups.Count + " cups.");
+            Console.WriteLine("5.) Exit");
         }
         public void DisplayDesiredQuantityRequest()
         {
             Console.WriteLine("How many would you like to buy?");
+            Console.WriteLine(Environment.NewLine);
+        }
+        public void DisplayRecipeMenu(Player player)
+        {
+            Console.WriteLine("RECIPE INFORMATION");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("You can change the amount of the listed ingredients here. You can choose an ingredient by its number.");
+            Console.WriteLine("1.) Lemons: " + player.recipe.lemons);
+            Console.WriteLine("2.) Sugars: " + player.recipe.sugars);
+            Console.WriteLine("3.) Ice Cubes: " + player.recipe.ice);
+            Console.WriteLine("4.) Exit");
             Console.WriteLine(Environment.NewLine);
         }
     }

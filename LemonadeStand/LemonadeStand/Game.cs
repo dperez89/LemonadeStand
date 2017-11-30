@@ -15,7 +15,8 @@ namespace LemonadeStand
         UI ui;
         Random random;
         List<string> initialMenuOptions = new List<string> { "start", "load" };
-        List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4" };
+        List<string> recipeMenuOptions = new List<string> { "1", "2", "3", "4" }; 
+        List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4","5" };
         List<string> playerMenuOptions = new List<string> { "store", "recipe", "weather", "begin" };
         int numberOfDaysInGame = 7; //NEEDS TO BE ASSIGNED BY THE PLAYER
         public Game()
@@ -53,6 +54,9 @@ namespace LemonadeStand
         }
         private void RunGame(Game game)
         {
+            bool beginIsSelected;
+            string userInput;
+
             player.SetName(ui);
             ui.DisplayPlayerSetNameSuccessMessage(player);
             ui.DisplayPlayerStartInfo(player);
@@ -62,19 +66,35 @@ namespace LemonadeStand
             // ***********BEGIN LOOP FOR MAIN GAME UNTIL NUMBER OF DAYS IN GAME IS SATISFIED***********
             for (int i = 0;  day.week.ElementAt(i).dayNumber < numberOfDaysInGame; i++)
             {
-                while (true)
+                beginIsSelected = false;
+                while (!beginIsSelected)
                 // ***********BEGIN LOOP FOR PLAYER MENU UNTIL 'BEGIN' IS SELECTED***********
                 {
                     ui.DisplayCurrentPlayerAndDayInfo(player, day, day.week.ElementAt(i).dayNumber); // does not currently report accurate DayNumber
                     ui.DisplayPlayerMenu();
-                    ui.GetUserInput(playerMenuOptions, game);
-                    break;
+                    userInput = ui.GetUserInput(playerMenuOptions, game);
+                    switch (userInput)
+                    {
+                        case "store":
+                            store.SellToPlayer(player, ui, storeMenuOptions, game);
+                            break;
+
+                        case "recipe":
+                            player.SetRecipe(ui, recipeMenuOptions, game);
+
+                            break;
+
+                        case "weather":
+
+                            break;
+
+                        case "begin":
+                            beginIsSelected = true;
+                            break;
+                    }
                 // display menu options ::relative to methods::
                     // STORE / RECIPE / WEATHER / BEGIN
-                        //STORE
-                            //Display inventory items and their prices
-                            //BUY option
-                                //adds to player inventory, reduces player money
+
                         //BEGIN
                             //generate customers
                             //have each customer evaluated against recipe and lemonade price values to determine

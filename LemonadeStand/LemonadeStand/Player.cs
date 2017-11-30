@@ -24,5 +24,29 @@ namespace LemonadeStand
             ui.DisplayPlayerNameChangeMessage();
             name = Console.ReadLine();
         }
+        public void SetRecipe(UI ui, List<string> options, Game game)
+        {
+            string userInput;
+
+            ui.DisplayRecipeMenu(this);
+            userInput = ui.GetUserInput(options, game);
+            switch(userInput)
+            {
+                case "1":
+                    recipe.SetLemonsAmount();
+                    break;
+
+                case "2":
+                    recipe.SetSugarsAmount();
+                    break;
+
+                case "3":
+                    recipe.SetIceAmount();
+                    break;
+
+                case "4":
+                    break;
+            }
+        }
     }
 }

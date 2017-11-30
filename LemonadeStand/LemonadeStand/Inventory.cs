@@ -13,6 +13,7 @@ namespace LemonadeStand
         public List<Ice> ice = new List<Ice> { };
         public List<Cup> cups = new List<Cup> { };
 
+
         public Inventory()
         {
 

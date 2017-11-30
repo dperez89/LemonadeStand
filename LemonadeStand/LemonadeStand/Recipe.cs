@@ -8,10 +8,10 @@ namespace LemonadeStand
 {
     class Recipe
     {
-        Lemon lemons;
-        Sugar sugars;
-        Ice ice;
-        Cup cups;
+        int reduceIngredientBy;
+        public int lemons = 4;
+        public int sugars = 4;
+        public int ice = 4;                
         int recipeGrade;
 
         public Recipe()
@@ -20,5 +20,25 @@ namespace LemonadeStand
         }
 
         //methods
+        private void SetRecipeGrade()
+        {
+
+        }
+        private void EvaluateRecipeGrade()
+        {
+
+        }
+        public void SetLemonsAmount()
+        {
+
+        }
+        public void SetSugarsAmount()
+        {
+
+        }
+        public void SetIceAmount()
+        {
+
+        }
     }
 }
