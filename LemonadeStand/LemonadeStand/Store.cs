@@ -42,7 +42,7 @@ namespace LemonadeStand
                     break;
 
                 case "4":
-                    SellIce(player, ui);
+                    SellCups(player, ui);
                     break;
 
                 case "5":
@@ -127,6 +127,14 @@ namespace LemonadeStand
                 for (int i = 1; i <= userInputQuantity; i++)
                 {
                     player.money -= cups.purchasePrice;
+                    player.inventory.cups.Add(new Cup());
+                    player.inventory.cups.Add(new Cup());
+                    player.inventory.cups.Add(new Cup());
+                    player.inventory.cups.Add(new Cup());
+                    player.inventory.cups.Add(new Cup());
+                    player.inventory.cups.Add(new Cup());
+                    player.inventory.cups.Add(new Cup());
+                    player.inventory.cups.Add(new Cup());
                     player.inventory.cups.Add(new Cup());
                 }
             }

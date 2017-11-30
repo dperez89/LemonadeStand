@@ -16,7 +16,7 @@ namespace LemonadeStand
         UI ui;
         Random random;
         List<string> initialMenuOptions = new List<string> { "start", "exit" };
-        List<string> recipeMenuOptions = new List<string> { "1", "2", "3", "4" }; 
+        List<string> recipeMenuOptions = new List<string> { "1", "2", "3", "4", "5" }; 
         List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4","5" };
         List<string> playerMenuOptions = new List<string> { "store", "recipe", "weather", "begin" };
         int numberOfDaysInGame = 7;
@@ -44,7 +44,6 @@ namespace LemonadeStand
                 customers.Add(new Customer(random));
                 Console.WriteLine(customers.ElementAt(i).willingnessToBuy);
             }
-            Console.ReadKey();
         }
         public void GetStartLoadOrExit(Game game)
         {
@@ -99,16 +98,11 @@ namespace LemonadeStand
 
                         case "begin":
                             GenerateCustomers();
+                            pos.RunBusinessDay(day, day.week.ElementAt(i).weather.weather, customers, player, ui);
                             beginIsSelected = true;
                             break;
                     }
-                // display menu options ::relative to methods::
-                    // STORE / RECIPE / WEATHER / BEGIN
-
-                        //BEGIN
-                            //generate customers
-                            //have each customer evaluated against recipe and lemonade price values to determine
-                              //either the success of a sale or if the customer doesn't buy any lemonade.
+                    customers.Clear();
                 }
                 //***********END LOOP FOR PLAYER MENU WHEN 'BEGIN' IS SELECTED***********
                 // Display results of the day (Day's number, Profit/Loss of the day, Profit/Loss of the game so far)

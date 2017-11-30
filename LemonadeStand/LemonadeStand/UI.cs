@@ -171,7 +171,8 @@ namespace LemonadeStand
             Console.WriteLine("1.) Lemons: " + player.recipe.Lemons);
             Console.WriteLine("2.) Sugars: " + player.recipe.Sugars);
             Console.WriteLine("3.) Ice Cubes: " + player.recipe.Ice);
-            Console.WriteLine("4.) Exit");
+            Console.WriteLine("4.) Your Current Price: " + player.recipe.LemonadePrice);
+            Console.WriteLine("5.) Exit");
             Console.WriteLine(Environment.NewLine);
         }
         public void DisplayWeatherForecast(Day day, int numberOfDaysInGame)

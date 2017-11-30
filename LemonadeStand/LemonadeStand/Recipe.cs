@@ -8,16 +8,17 @@ namespace LemonadeStand
 {
     class Recipe
     {
-        private int reduceIngredientBy;
+        public int amountOfCupsInPitcher = 10;
         private int recipeGrade;
         private int lemonsQuality;
         private int sugarsQuality;
         private int iceQuality;
+        private int lemonadePrice = 1;
         private int maximumLemonsThresholdThatWillIncreaseQuality = 8;
         private int maximumSugarsThresholdThatWillIncreaseQuality = 7;
         private int maximumIceThresholdThatWillIncreaseQuality = 10;
-        private int lemonsQualityModifier = 5;
-        private int sugarsQualityModifier = 4;
+        private int lemonsQualityModifier = 3;
+        private int sugarsQualityModifier = 3;
         private int iceQualityModifier = 3;
         private int lemons = 4;
         private int sugars = 4;
@@ -66,6 +67,17 @@ namespace LemonadeStand
             set
             {
                 recipeGrade = value;
+            }
+        }
+        public int LemonadePrice
+        {
+            get
+            {
+                return lemonadePrice;
+            }
+            set
+            {
+                lemonadePrice = value;
             }
         }
 

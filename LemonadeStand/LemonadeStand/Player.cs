@@ -60,8 +60,14 @@ namespace LemonadeStand
                             break;
 
                         case "4":
-                            exitIsSelected = true;
+                            userInput = ui.GetUserQuantityInput();
+                            userQuantityInput = ui.ConvertStringToNumber(userInput, userQuantityInput);
+                            SetLemonadePrice(userQuantityInput);
                             break;
+
+                        case "5":
+                                exitIsSelected = true;
+                                break;
                 }
             }
         }
@@ -76,6 +82,10 @@ namespace LemonadeStand
         private void SetIceAmount(int userQuantityInput)
         {
             recipe.Ice = userQuantityInput;
+        }
+        private void SetLemonadePrice(int userQuantityInput)
+        {
+            recipe.LemonadePrice = userQuantityInput;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace LemonadeStand
     class Lemonade
     {
         int lemonadeQuality;
+        int lemonadePrice;
 
         public Lemonade(int lemonadeQuality)
         {
