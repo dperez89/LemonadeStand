@@ -16,6 +16,7 @@ namespace LemonadeStand
         public Player()
         {
             inventory = new Inventory();
+            recipe = new Recipe();
         }
 
         //methods
@@ -24,29 +25,57 @@ namespace LemonadeStand
             ui.DisplayPlayerNameChangeMessage();
             name = Console.ReadLine();
         }
+        private void GenerateCupsOfLemonade()
+        {
+            inventory.cupsOfLemonade.Add(new Lemonade(recipe.RecipeGrade));
+        }
         public void SetRecipe(UI ui, List<string> options, Game game)
         {
             string userInput;
+            int userQuantityInput = 0;
+            bool exitIsSelected = false;
 
-            ui.DisplayRecipeMenu(this);
-            userInput = ui.GetUserInput(options, game);
-            switch(userInput)
+            while (!exitIsSelected)
             {
-                case "1":
-                    recipe.SetLemonsAmount();
-                    break;
+                ui.DisplayRecipeMenu(this);
+                userInput = ui.GetUserInput(options, game);
+                    switch (userInput)
+                    {
+                        case "1":
+                            userInput = ui.GetUserQuantityInput();
+                            userQuantityInput = ui.ConvertStringToNumber(userInput, userQuantityInput);
+                            SetLemonsAmount(userQuantityInput);
+                            break;
 
-                case "2":
-                    recipe.SetSugarsAmount();
-                    break;
+                        case "2":
+                            userInput = ui.GetUserQuantityInput();
+                            userQuantityInput = ui.ConvertStringToNumber(userInput, userQuantityInput);
+                            SetSugarsAmount(userQuantityInput);
+                            break;
 
-                case "3":
-                    recipe.SetIceAmount();
-                    break;
+                        case "3":
+                            userInput = ui.GetUserQuantityInput();
+                            userQuantityInput = ui.ConvertStringToNumber(userInput, userQuantityInput);
+                            SetIceAmount(userQuantityInput);
+                            break;
 
-                case "4":
-                    break;
+                        case "4":
+                            exitIsSelected = true;
+                            break;
+                }
             }
+        }
+        private void SetLemonsAmount(int userQuantityInput)
+        {
+            recipe.Lemons = userQuantityInput;
+        }
+        private void SetSugarsAmount(int userQuantityInput)
+        {
+            recipe.Sugars = userQuantityInput;
+        }
+        private void SetIceAmount(int userQuantityInput)
+        {
+            recipe.Ice = userQuantityInput;
         }
     }
 }

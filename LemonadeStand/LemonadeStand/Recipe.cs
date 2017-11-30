@@ -8,11 +8,68 @@ namespace LemonadeStand
 {
     class Recipe
     {
-        int reduceIngredientBy;
-        public int lemons = 4;
-        public int sugars = 4;
-        public int ice = 4;                
-        int recipeGrade;
+        private int reduceIngredientBy;
+        private int recipeGrade;
+        private int lemonsQuality;
+        private int sugarsQuality;
+        private int iceQuality;
+        private int maximumLemonsThresholdThatWillIncreaseQuality = 8;
+        private int maximumSugarsThresholdThatWillIncreaseQuality = 7;
+        private int maximumIceThresholdThatWillIncreaseQuality = 10;
+        private int lemonsQualityModifier = 5;
+        private int sugarsQualityModifier = 4;
+        private int iceQualityModifier = 3;
+        private int lemons = 4;
+        private int sugars = 4;
+        private int ice = 4;                
+        public int Lemons
+        {
+            get
+            {
+                return lemons;
+            }
+            set
+            {
+                lemons = value;
+            }
+        }
+
+        public int Sugars
+        {
+            get
+            {
+                return sugars;
+            }
+            set
+            {
+                sugars = value;
+            }
+        }
+
+        public int Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+            }
+        }
+        public int RecipeGrade
+        {
+            get
+            {
+                return recipeGrade;
+            }
+            set
+            {
+                recipeGrade = value;
+            }
+        }
+
+
 
         public Recipe()
         {
@@ -22,23 +79,50 @@ namespace LemonadeStand
         //methods
         private void SetRecipeGrade()
         {
+            lemonsQuality = ResolveQuaityFromLemons(lemons);
+            sugarsQuality = ResolveQuaityFromSugars(sugars);
+            iceQuality = ResolveQuaityFromIce(ice);
+            recipeGrade = lemonsQuality + sugarsQuality + iceQuality;
 
         }
-        private void EvaluateRecipeGrade()
+        private int ResolveQuaityFromLemons(int lemons)
         {
-
+            if(lemons <= maximumLemonsThresholdThatWillIncreaseQuality)
+            {
+                lemonsQuality = lemons * lemonsQualityModifier;
+                return lemonsQuality;
+            }
+            else
+            {
+                lemonsQuality = (maximumLemonsThresholdThatWillIncreaseQuality * lemonsQualityModifier) - ((lemons - maximumLemonsThresholdThatWillIncreaseQuality) * lemonsQualityModifier);
+                return lemonsQuality;
+            }
         }
-        public void SetLemonsAmount()
+        private int ResolveQuaityFromSugars(int sugars)
         {
-
+            if (sugars <= maximumSugarsThresholdThatWillIncreaseQuality)
+            {
+                sugarsQuality = sugars * sugarsQualityModifier;
+                return sugarsQuality;
+            }
+            else
+            {
+                sugarsQuality = (maximumSugarsThresholdThatWillIncreaseQuality * sugarsQualityModifier) - ((sugars - maximumSugarsThresholdThatWillIncreaseQuality) * sugarsQualityModifier);
+                return sugarsQuality;
+            }
         }
-        public void SetSugarsAmount()
+        private int ResolveQuaityFromIce(int ice)
         {
-
-        }
-        public void SetIceAmount()
-        {
-
+            if (ice <= maximumIceThresholdThatWillIncreaseQuality)
+            {
+                iceQuality = ice * iceQualityModifier;
+                return iceQuality;
+            }
+            else
+            {
+                iceQuality = (maximumIceThresholdThatWillIncreaseQuality * iceQualityModifier) - ((ice - maximumIceThresholdThatWillIncreaseQuality) * iceQualityModifier);
+                return iceQuality;
+            }
         }
     }
 }

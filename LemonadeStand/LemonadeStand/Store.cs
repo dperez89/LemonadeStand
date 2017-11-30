@@ -53,7 +53,7 @@ namespace LemonadeStand
         public void SellLemons(Player player, UI ui)
         {
             ui.DisplayDesiredQuantityRequest();
-            userInput = ui.GetUserStorePurchaseInput();
+            userInput = ui.GetUserQuantityInput();
             userInputQuantity = ui.ConvertStringToNumber(userInput, userInputQuantity);
             doesPlayerHaveEnoughMoney = ValidatePriceToPlayerMoney(player, userInputQuantity, lemons.purchasePrice);
             if(doesPlayerHaveEnoughMoney)
@@ -73,7 +73,7 @@ namespace LemonadeStand
         public void SellSugar(Player player, UI ui)
         {
             ui.DisplayDesiredQuantityRequest();
-            userInput = ui.GetUserStorePurchaseInput();
+            userInput = ui.GetUserQuantityInput();
             userInputQuantity = ui.ConvertStringToNumber(userInput, userInputQuantity);
             doesPlayerHaveEnoughMoney = ValidatePriceToPlayerMoney(player, userInputQuantity, sugars.purchasePrice);
             if (doesPlayerHaveEnoughMoney)
@@ -95,7 +95,7 @@ namespace LemonadeStand
         public void SellIce(Player player, UI ui)
         {
             ui.DisplayDesiredQuantityRequest();
-            userInput = ui.GetUserStorePurchaseInput();
+            userInput = ui.GetUserQuantityInput();
             userInputQuantity = ui.ConvertStringToNumber(userInput, userInputQuantity);
             doesPlayerHaveEnoughMoney = ValidatePriceToPlayerMoney(player, userInputQuantity, ice.purchasePrice);
             if (doesPlayerHaveEnoughMoney)
@@ -119,7 +119,7 @@ namespace LemonadeStand
         public void SellCups(Player player, UI ui)
         {
             ui.DisplayDesiredQuantityRequest();
-            userInput = ui.GetUserStorePurchaseInput();
+            userInput = ui.GetUserQuantityInput();
             userInputQuantity = ui.ConvertStringToNumber(userInput, userInputQuantity);
             doesPlayerHaveEnoughMoney = ValidatePriceToPlayerMoney(player, userInputQuantity, cups.purchasePrice);
             if (doesPlayerHaveEnoughMoney)

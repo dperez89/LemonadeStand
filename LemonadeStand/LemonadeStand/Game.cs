@@ -32,7 +32,7 @@ namespace LemonadeStand
         //methods
         public void TestMethod(Game game) //INDEPENDENT METHOD FOR TESTING METHODS UNDER CONSTRUCTION
         {
-
+            player.SetRecipe(ui, recipeMenuOptions, game);
         }
         public void GetStartLoadOrExit(Game game)
         {
@@ -81,7 +81,6 @@ namespace LemonadeStand
 
                         case "recipe":
                             player.SetRecipe(ui, recipeMenuOptions, game);
-
                             break;
 
                         case "weather":

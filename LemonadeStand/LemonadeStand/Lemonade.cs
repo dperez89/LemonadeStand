@@ -8,9 +8,9 @@ namespace LemonadeStand
 {
     class Lemonade
     {
-        //variables
+        int lemonadeQuality;
 
-        public Lemonade()
+        public Lemonade(int lemonadeQuality)
         {
 
         }

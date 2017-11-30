@@ -41,14 +41,14 @@ namespace LemonadeStand
             }
             return userInput;
         }
-        public string GetUserStorePurchaseInput()
+        public string GetUserQuantityInput()
         {
             Console.WriteLine("Please enter a quantity");
             userInput = Console.ReadLine();
-            isInputValid = ValidateUserStorePurchaseInput(userInput);
+            isInputValid = ValidateUserQuantityInput(userInput);
             if (!isInputValid)
             {
-                GetUserStorePurchaseInput();
+                GetUserQuantityInput();
             }
             return userInput;
         }
@@ -66,7 +66,7 @@ namespace LemonadeStand
                 return isInputValid;
             }
         }
-        private bool ValidateUserStorePurchaseInput(string userInput)
+        private bool ValidateUserQuantityInput(string userInput)
         {
             isInputValid = false;
             int i;
@@ -169,9 +169,9 @@ namespace LemonadeStand
             Console.WriteLine("RECIPE INFORMATION");
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("You can change the amount of the listed ingredients here. You can choose an ingredient by its number.");
-            Console.WriteLine("1.) Lemons: " + player.recipe.lemons);
-            Console.WriteLine("2.) Sugars: " + player.recipe.sugars);
-            Console.WriteLine("3.) Ice Cubes: " + player.recipe.ice);
+            Console.WriteLine("1.) Lemons: " + player.recipe.Lemons);
+            Console.WriteLine("2.) Sugars: " + player.recipe.Sugars);
+            Console.WriteLine("3.) Ice Cubes: " + player.recipe.Ice);
             Console.WriteLine("4.) Exit");
             Console.WriteLine(Environment.NewLine);
         }
