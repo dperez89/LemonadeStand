@@ -25,6 +25,10 @@ namespace LemonadeStand
             ui.DisplayPlayerNameChangeMessage();
             name = Console.ReadLine();
         }
+        public void ViewWeather()
+        {
+
+        }
         private void GenerateCupsOfLemonade()
         {
             inventory.cupsOfLemonade.Add(new Lemonade(recipe.RecipeGrade));

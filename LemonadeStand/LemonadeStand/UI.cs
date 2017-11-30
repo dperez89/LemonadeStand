@@ -124,7 +124,7 @@ namespace LemonadeStand
             Console.WriteLine(" Press any key to continue...");
             Console.ReadKey();
         }
-        public void DisplayCurrentPlayerAndDayInfo(Player player, Day day ,int dayNumber)
+        public void DisplayCurrentPlayerAndDayInfo(Player player, Day day , int dayNumber)
         {
             Console.WriteLine("Player: " + player.name);
             Console.WriteLine("Money: $" + player.money);
@@ -174,6 +174,21 @@ namespace LemonadeStand
             Console.WriteLine("3.) Ice Cubes: " + player.recipe.Ice);
             Console.WriteLine("4.) Exit");
             Console.WriteLine(Environment.NewLine);
+        }
+        public void DisplayWeatherForecast(Day day, int numberOfDaysInGame)
+        {
+            Console.WriteLine("WEATHER FORECAST");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Here is the weather for the next seven days:");
+            Console.WriteLine(Environment.NewLine);
+
+            for (int i = 0; day.week.ElementAt(i).dayNumber < numberOfDaysInGame; i++ )
+            {
+                Console.WriteLine("Day: " + day.week.ElementAt(i).dayNumber);
+                Console.WriteLine("Temperature: " + day.week.ElementAt(i).weather.temperature);
+                Console.WriteLine("Weather Type: " + day.week.ElementAt(i).weather.weather);
+                Console.WriteLine(Environment.NewLine);
+            }
         }
     }
 }
