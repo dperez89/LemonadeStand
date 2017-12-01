@@ -25,30 +25,35 @@ namespace LemonadeStand
         }
         public void SellToPlayer(Player player, UI ui, List<string> options, Game game)
         {
-            ui.DisplayStoreMenu(this, player);
-            userInput = ui.GetUserInput(options, game);
-            switch(userInput)
+            bool exitIsSelected = false;
+                        
+            while (!exitIsSelected)
             {
-                case "1":
-                    SellLemons(player, ui);
-                    break;
+                ui.DisplayStoreMenu(this, player);
+                userInput = ui.GetUserInput(options, game);
+                switch (userInput)
+                {
+                    case "1":
+                        SellLemons(player, ui);
+                        break;
 
-                case "2":
-                    SellSugar(player, ui);
-                    break;
+                    case "2":
+                        SellSugar(player, ui);
+                        break;
 
-                case "3":
-                    SellIce(player, ui);
-                    break;
+                    case "3":
+                        SellIce(player, ui);
+                        break;
 
-                case "4":
-                    SellCups(player, ui);
-                    break;
+                    case "4":
+                        SellCups(player, ui);
+                        break;
 
-                case "5":
-                    break;
+                    case "5":
+                        exitIsSelected = true;
+                        break;
+                }
             }
-
         }
         public void SellLemons(Player player, UI ui)
         {
@@ -60,7 +65,9 @@ namespace LemonadeStand
             {
                 for (int i = 1; i <= userInputQuantity; i++)
                 {
-                    player.money -= lemons.purchasePrice;
+                    player.Money -= lemons.purchasePrice;
+                    player.TotalMoneySpent += lemons.purchasePrice;
+                    player.MoneySpentToday += lemons.purchasePrice;
                     player.inventory.lemons.Add(new Lemon());
                 }
             }
@@ -80,7 +87,9 @@ namespace LemonadeStand
             {
                 for (int i = 1; i <= userInputQuantity; i++)
                 {
-                    player.money -= sugars.purchasePrice;
+                    player.Money -= sugars.purchasePrice;
+                    player.TotalMoneySpent += sugars.purchasePrice;
+                    player.MoneySpentToday += sugars.purchasePrice;
                     player.inventory.sugars.Add(new Sugar());
                     player.inventory.sugars.Add(new Sugar());
                     player.inventory.sugars.Add(new Sugar());
@@ -102,7 +111,9 @@ namespace LemonadeStand
             {
                 for (int i = 1; i <= userInputQuantity; i++)
                 {
-                    player.money -= ice.purchasePrice;
+                    player.Money -= ice.purchasePrice;
+                    player.TotalMoneySpent += ice.purchasePrice;
+                    player.MoneySpentToday += ice.purchasePrice;
                     player.inventory.ice.Add(new Ice());
                     player.inventory.ice.Add(new Ice());
                     player.inventory.ice.Add(new Ice());
@@ -126,7 +137,9 @@ namespace LemonadeStand
             {
                 for (int i = 1; i <= userInputQuantity; i++)
                 {
-                    player.money -= cups.purchasePrice;
+                    player.Money -= cups.purchasePrice;
+                    player.TotalMoneySpent += cups.purchasePrice;
+                    player.MoneySpentToday += cups.purchasePrice;
                     player.inventory.cups.Add(new Cup());
                     player.inventory.cups.Add(new Cup());
                     player.inventory.cups.Add(new Cup());
@@ -147,7 +160,7 @@ namespace LemonadeStand
         private bool ValidatePriceToPlayerMoney(Player player, int userQuantity, int purchasePrice)
         {
             doesPlayerHaveEnoughMoney = false;
-            if ((userQuantity * purchasePrice) > player.money)
+            if ((userQuantity * purchasePrice) > player.Money)
             {
                 return doesPlayerHaveEnoughMoney;
             }

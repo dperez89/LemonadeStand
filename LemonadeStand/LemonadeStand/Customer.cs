@@ -9,7 +9,6 @@ namespace LemonadeStand
     class Customer
     {
         public int willingnessToBuy;
-        public int customerWillBuyThreshold;
 
 
         public Customer(Random random)

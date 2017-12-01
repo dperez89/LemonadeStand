@@ -9,9 +9,44 @@ namespace LemonadeStand
     class PointOfSale
     {
         //variables
-        int saleSuccessThreshold = 80;
-        int successfulSales;
-        bool wasSaleSuccessful;
+        private int successfulSales;
+        private int cupsOfLemonade;
+        private int amountMadeInSalesToday;
+        bool soldOut = false;
+
+        public int SuccessfulSales
+        {
+            get
+            {
+                return successfulSales;
+            }
+            set
+            {
+                successfulSales = value;
+            }
+        }
+        public int CupsOfLemonade
+        {
+            get
+            {
+                return cupsOfLemonade;
+            }
+            set
+            {
+                cupsOfLemonade = value;
+            }
+        }
+        public int AmountMadeInSalesToday
+        {
+            get
+            {
+                return amountMadeInSalesToday;
+            }
+            set
+            {
+                amountMadeInSalesToday = value;
+            }
+        }
 
         public PointOfSale()
         {
@@ -21,21 +56,46 @@ namespace LemonadeStand
         //methods
         public void RunBusinessDay(Day day, string currentDayWeather, List<Customer> customers, Player player, UI ui)
         {
-
+            soldOut = false;
+            AmountMadeInSalesToday = 0;
+            CupsOfLemonade = 0;
             for (int i = 0; i <= customers.Count; i++)
             {
-                wasSaleSuccessful = false;
-                wasSaleSuccessful = DetermineSaleSuccessOrFailure(i, day, currentDayWeather, customers, player, ui);
+                if (soldOut)
+                {
+                    continue;
+                }
+                
+                bool wasSaleSuccessful = DetermineSaleSuccessOrFailure(i, day, currentDayWeather, customers, player, ui);
                 if (wasSaleSuccessful == true)
                 {
-                    successfulSales++;
-                    IncreasePlayerMoney(player);
-                    if(successfulSales >= player.recipe.amountOfCupsInPitcher)
+                    if(CupsOfLemonade > 0 && player.inventory.cups.Count > 0)
                     {
-                        DecreasePlayerLemons(player);
-                        DecreasePlayerSugars(player);
-                        DecreasePlayerIce(player);
+                        SuccessfulSales++;
+                        IncreasePlayerMoney(player);
+                        IncreaseAmountMadeInSalesToday(player);
                         DecreasePlayerCups(player);
+                        CupsOfLemonade--;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            DecreasePlayerLemons(player);
+                            DecreasePlayerSugars(player);
+                            DecreasePlayerIce(player);
+                            CupsOfLemonade = player.recipe.AmountOfCupsInPitcher;
+                            DecreasePlayerCups(player);
+                            SuccessfulSales++;
+                            IncreasePlayerMoney(player);
+                            IncreaseAmountMadeInSalesToday(player);
+
+                        }
+                        catch
+                        {
+                            soldOut = true;
+                        }
+                       
                     }
                 }
             }
@@ -43,15 +103,25 @@ namespace LemonadeStand
         }
         public bool DetermineSaleSuccessOrFailure(int i, Day day, string currentDayWeather, List<Customer> customers, Player player, UI ui)
         {
-            if (customers.ElementAt(i).willingnessToBuy >= ((day.weather.temperature * day.weather.temperatureMod) + player.recipe.RecipeGrade));
+            bool wasSaleSuccessful;
+            if (customers.ElementAt(i).willingnessToBuy >= ((day.weather.temperature * day.weather.temperatureMod) + player.recipe.RecipeGrade))
             {
-                wasSaleSuccessful = true;
+               wasSaleSuccessful = true;
+            }
+            else
+            {
+                wasSaleSuccessful = false;
             }
             return wasSaleSuccessful;  
         }
         private void IncreasePlayerMoney(Player player)
         {
-            player.money += player.recipe.LemonadePrice;
+            player.Money += player.recipe.LemonadePrice;
+            player.TotalMoneyEarned += player.recipe.LemonadePrice;
+        }
+        private void IncreaseAmountMadeInSalesToday(Player player)
+        {
+            AmountMadeInSalesToday += player.recipe.LemonadePrice;
         }
         private void DecreasePlayerLemons(Player player)
         {
@@ -76,10 +146,7 @@ namespace LemonadeStand
         }
         private void DecreasePlayerCups(Player player)
         {
-            for(int i = 1; i <= player.recipe.amountOfCupsInPitcher; i++)
-            {
-                player.inventory.cups.RemoveAt(0);
-            }
+            player.inventory.cups.RemoveAt(0);
         }
     }
 }

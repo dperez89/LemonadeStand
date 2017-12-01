@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     class Lemon
     {
-        int daysTillSpoiled;
         public int purchasePrice = 3;
 
         public Lemon()

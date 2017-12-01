@@ -9,17 +9,45 @@ namespace LemonadeStand
     class Game
     {
         Player player;
-        Store store;
-        List<Customer> customers;
+        Store store;        
         Day day;
         PointOfSale pos;
         UI ui;
         Random random;
-        List<string> initialMenuOptions = new List<string> { "start", "exit" };
-        List<string> recipeMenuOptions = new List<string> { "1", "2", "3", "4", "5" }; 
-        List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4","5" };
-        List<string> playerMenuOptions = new List<string> { "store", "recipe", "weather", "begin" };
-        int numberOfDaysInGame = 7;
+        public List<Customer> customers;
+        private List<string> initialMenuOptions = new List<string> { "start", "exit" };
+        private List<string> recipeMenuOptions = new List<string> { "1", "2", "3", "4", "5" }; 
+        private List<string> storeMenuOptions = new List<string> { "1", "2", "3", "4","5" };
+        private List<string> playerMenuOptions = new List<string> { "store", "recipe", "weather", "begin" };
+        private int numberOfDaysInGame = 7;
+        public List<string> InitialMenuOptions
+        {
+            get
+            {
+                return initialMenuOptions;
+            }
+        }
+        public List<string> RecipeMenuOptions
+        {
+            get
+            {
+                return recipeMenuOptions;
+            }
+        }
+        public List<string> StoreMenuOptions
+        {
+            get
+            {
+                return storeMenuOptions;
+            }
+        }
+        public List<string> PlayerMenuOptions
+        {
+            get
+            {
+                return playerMenuOptions;
+            }
+        }
         public Game()
         {
             random = new Random();
@@ -31,29 +59,24 @@ namespace LemonadeStand
             ui = new UI();
         }
 
-        //methods
-        public void TestMethod(Game game) //INDEPENDENT METHOD FOR TESTING METHODS UNDER CONSTRUCTION
-        {
-            GenerateCustomers();
-        }
         public void GenerateCustomers()
         {
             int j = random.Next(70, 130);
-            for(int i = 0; i <= j; i++)
+            for(int i = 0; i < j; i++)
             {
                 customers.Add(new Customer(random));
-                Console.WriteLine(customers.ElementAt(i).willingnessToBuy);
             }
         }
         public void GetStartLoadOrExit(Game game)
         {
             ui.DisplayInitialMenu();
-            string userInput = ui.GetUserInput(initialMenuOptions, game);
+            string userInput = ui.GetUserInput(InitialMenuOptions, game);
             switch (userInput)
             {
                 case "start":
                     Console.Clear();
                     Console.WriteLine("You've started a game!");
+                    Console.WriteLine(Environment.NewLine);
                     RunGame(game);
                     break;
 
@@ -69,27 +92,31 @@ namespace LemonadeStand
             string userInput;
 
             player.SetName(ui);
+            Console.Clear();
             ui.DisplayPlayerSetNameSuccessMessage(player);
             ui.DisplayPlayerStartInfo(player);
             ui.DisplayPlayerMenuExplanation();
+            Console.WriteLine(Environment.NewLine);
             ui.DisplayBeginGameMessage();
+            ui.DisplayPressAnyKeyToContinue();
+            Console.Clear();
             day.GenerateSevenDays(random);
             for (int i = 0; day.week.ElementAt(i).dayNumber <= numberOfDaysInGame; i++)
             {
                 beginIsSelected = false;
                 while (!beginIsSelected)
                 {
-                    ui.DisplayCurrentPlayerAndDayInfo(player, day, day.week.ElementAt(i).dayNumber);
+                    ui.DisplayCurrentPlayerAndDayInfo(player, day.week.ElementAt(i));
                     ui.DisplayPlayerMenu();
-                    userInput = ui.GetUserInput(playerMenuOptions, game);
+                    userInput = ui.GetUserInput(PlayerMenuOptions, game);
                     switch (userInput)
                     {
                         case "store":
-                            store.SellToPlayer(player, ui, storeMenuOptions, game);
+                            store.SellToPlayer(player, ui, StoreMenuOptions, game);
                             break;
 
                         case "recipe":
-                            player.SetRecipe(ui, recipeMenuOptions, game);
+                            player.SetRecipe(ui, RecipeMenuOptions, game);
                             break;
 
                         case "weather":
@@ -97,17 +124,20 @@ namespace LemonadeStand
                             break;
 
                         case "begin":
+                            player.recipe.SetRecipeGrade();
                             GenerateCustomers();
                             pos.RunBusinessDay(day, day.week.ElementAt(i).weather.weather, customers, player, ui);
                             beginIsSelected = true;
+                            Console.Clear();
+                            ui.DisplayResultsOfTheDay(player, pos, game);
+                            player.ResetMoneySpentToday();
+                            ui.DisplayPressAnyKeyToContinue();
                             break;
                     }
                     customers.Clear();
+                    Console.Clear();
                 }
-                //***********END LOOP FOR PLAYER MENU WHEN 'BEGIN' IS SELECTED***********
-                // Display results of the day (Day's number, Profit/Loss of the day, Profit/Loss of the game so far)
             }
-            // ***********END LOOP FOR MAIN GAME WHEN NUMBER OF DAYS IN GAME IS SATISFIED***********
         }
     }
 }

@@ -31,6 +31,7 @@ namespace LemonadeStand
         }
         public string GetUserInput(List<string> options, Game game)
         {
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Please make a selection:");
             userInput = Console.ReadLine().ToLower();
             isInputValid = ValidateUserInput(userInput, options, game);
@@ -94,10 +95,12 @@ namespace LemonadeStand
         public void DisplayPlayerSetNameSuccessMessage(Player player)
         {
             Console.WriteLine("Hello " + player.name + ", let's get this lemonade stand up and running!");
+            Console.WriteLine(Environment.NewLine);
         }
         public void DisplayPlayerStartInfo(Player player)
         {
-            Console.WriteLine("Alright, " + player.name + ", you currently have $" + player.money + " and nothing in your inventory.");
+            Console.WriteLine("Alright, " + player.name + ", you currently have $" + player.Money + " and nothing in your inventory.");
+            Console.WriteLine(Environment.NewLine);
         }
         public void DisplayPlayerMenuExplanation()
         {
@@ -117,20 +120,39 @@ namespace LemonadeStand
             Console.WriteLine("When you feel you're ready to start the business day, all you have to do is BEGIN");
             Console.WriteLine("and start selling your lemonade to the masses!");
         }
+
+        internal void DisplayResultsOfTheDay(Player player, PointOfSale pos, Game game)
+        {
+            Console.WriteLine("TODAY'S RESULTS");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("You sold lemonade to " + pos.SuccessfulSales + " out of " + game.customers.Count + " potential customers.");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("You spent a total of $" + player.MoneySpentToday + " today.");
+            Console.WriteLine("You earned a total of $" + pos.AmountMadeInSalesToday + " today");
+            if (player.TotalMoneyEarned > player.TotalMoneySpent)
+            {
+                Console.WriteLine("Your lemonade stand has ultimately experienced a profit of $" + (player.TotalMoneyEarned - player.TotalMoneySpent) + " since the start of your business");
+            }
+            else if (player.TotalMoneyEarned < player.TotalMoneySpent)
+            {
+                Console.WriteLine("Your lemonade stand has ultimately experienced a loss of $" + (player.TotalMoneySpent - player.TotalMoneyEarned) + " since the start of your business");
+            }
+        }
+
         public void DisplayBeginGameMessage()
         {
             Console.WriteLine("Time to get to work!");
-            Console.WriteLine(" Press any key to continue...");
-            Console.ReadKey();
         }
-        public void DisplayCurrentPlayerAndDayInfo(Player player, Day day , int dayNumber)
+        public void DisplayCurrentPlayerAndDayInfo(Player player, Day day)
         {
             Console.WriteLine("Player: " + player.name);
-            Console.WriteLine("Money: $" + player.money);
-            Console.WriteLine("Day: " + dayNumber);
+            Console.WriteLine("Money: $" + player.Money);
+            Console.WriteLine("Day: " + day.dayNumber);
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("WEATHER");
             Console.WriteLine("Type: " + day.weather.weather);
             Console.WriteLine("Temperature: " + day.weather.temperature);
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("INVENTORY");
             Console.WriteLine("Lemons: " + player.inventory.lemons.Count);
             Console.WriteLine("Sugars: " + player.inventory.sugars.Count);
@@ -150,7 +172,7 @@ namespace LemonadeStand
             Console.Clear();
             Console.WriteLine("Welcome to the Store!");
             Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("You currently have $" + player.money);
+            Console.WriteLine("You currently have $" + player.Money);
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("1.) Lemons - $" + store.lemons.purchasePrice + "       You currently have " + player.inventory.lemons.Count + " lemons.");
             Console.WriteLine("2.) Sugar - $" + store.sugars.purchasePrice + "        You currently have " + player.inventory.sugars.Count + " sugars.");
@@ -189,6 +211,12 @@ namespace LemonadeStand
                 Console.WriteLine("Weather Type: " + day.week.ElementAt(i).weather.weather);
                 Console.WriteLine(Environment.NewLine);
             }
+            Console.ReadKey();
+        }
+        public void DisplayPressAnyKeyToContinue()
+        {
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Press Any Key To Continue...");
             Console.ReadKey();
         }
     }

@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     class Recipe
     {
-        public int amountOfCupsInPitcher = 10;
+        private int amountOfCupsInPitcher = 9;
         private int recipeGrade;
         private int lemonsQuality;
         private int sugarsQuality;
@@ -80,6 +80,13 @@ namespace LemonadeStand
                 lemonadePrice = value;
             }
         }
+        public int AmountOfCupsInPitcher
+        {
+            get
+            {
+                return amountOfCupsInPitcher;
+            }
+        }
 
 
 
@@ -89,7 +96,7 @@ namespace LemonadeStand
         }
 
         //methods
-        private void SetRecipeGrade()
+        public void SetRecipeGrade()
         {
             lemonsQuality = ResolveQuaityFromLemons(lemons);
             sugarsQuality = ResolveQuaityFromSugars(sugars);

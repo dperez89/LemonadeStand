@@ -8,10 +8,58 @@ namespace LemonadeStand
 {
     class Player
     {
+        private int totalMoneySpent;
+        private int totalMoneyEarned;
+        private int moneySpentToday;
         public string name;
         public Inventory inventory;
         public Recipe recipe;
-        public int money = 100;
+        private int money = 100;
+
+        public int TotalMoneySpent
+        {
+            get
+            {
+                return totalMoneySpent;            
+            }
+            set
+            {
+                totalMoneySpent = value;
+            }
+        }
+        public int TotalMoneyEarned
+        {
+            get
+            {
+                return totalMoneyEarned;
+            }
+            set
+            {
+                totalMoneyEarned = value;
+            }
+        }
+        public int MoneySpentToday
+        {
+            get
+            {
+                return moneySpentToday;
+            }
+            set
+            {
+                moneySpentToday = value;
+            }
+        }
+        public int Money
+        {
+            get
+            {
+                return money;           
+            }
+            set
+            {
+                money = value;
+            }
+        }
 
         public Player()
         {
@@ -37,6 +85,7 @@ namespace LemonadeStand
 
             while (!exitIsSelected)
             {
+                Console.Clear();
                 ui.DisplayRecipeMenu(this);
                 userInput = ui.GetUserInput(options, game);
                     switch (userInput)
@@ -86,6 +135,10 @@ namespace LemonadeStand
         private void SetLemonadePrice(int userQuantityInput)
         {
             recipe.LemonadePrice = userQuantityInput;
+        }
+        public void ResetMoneySpentToday()
+        {
+            MoneySpentToday = 0;
         }
     }
 }
