@@ -138,6 +138,7 @@ namespace LemonadeStand
                     Console.Clear();
                 }
             }
+            ui.DisplayEndOfGame(player);
         }
     }
 }

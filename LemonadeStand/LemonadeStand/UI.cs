@@ -204,7 +204,7 @@ namespace LemonadeStand
             Console.WriteLine("Here is the weather for the next seven days:");
             Console.WriteLine(Environment.NewLine);
 
-            for (int i = 0; day.week.ElementAt(i).dayNumber < numberOfDaysInGame; i++ )
+            for (int i = 0; day.week.ElementAt(i).dayNumber <= numberOfDaysInGame; i++ )
             {
                 Console.WriteLine("Day: " + day.week.ElementAt(i).dayNumber);
                 Console.WriteLine("Temperature: " + day.week.ElementAt(i).weather.temperature);
@@ -218,6 +218,13 @@ namespace LemonadeStand
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Press Any Key To Continue...");
             Console.ReadKey();
+        }
+        public void DisplayEndOfGame(Player player)
+        {
+            Console.WriteLine("It would appear you've run out of time!");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("THANKS FOR PLAYING!");
+
         }
     }
 }
