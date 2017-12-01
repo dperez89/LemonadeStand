@@ -104,7 +104,7 @@ namespace LemonadeStand
         public bool DetermineSaleSuccessOrFailure(int i, Day day, string currentDayWeather, List<Customer> customers, Player player, UI ui)
         {
             bool wasSaleSuccessful;
-            if (customers.ElementAt(i).willingnessToBuy >= ((day.weather.temperature * day.weather.temperatureMod) + player.recipe.RecipeGrade))
+            if (customers.ElementAt(i).willingnessToBuy >= ((day.weather.temperature * day.weather.temperatureMod) + (player.recipe.LemonadePrice * player.recipe.PriceModifier) - player.recipe.RecipeGrade))
             {
                wasSaleSuccessful = true;
             }

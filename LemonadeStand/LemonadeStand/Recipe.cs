@@ -14,6 +14,7 @@ namespace LemonadeStand
         private int sugarsQuality;
         private int iceQuality;
         private int lemonadePrice = 1;
+        private int priceModifier = 4;
         private int maximumLemonsThresholdThatWillIncreaseQuality = 8;
         private int maximumSugarsThresholdThatWillIncreaseQuality = 7;
         private int maximumIceThresholdThatWillIncreaseQuality = 10;
@@ -78,6 +79,13 @@ namespace LemonadeStand
             set
             {
                 lemonadePrice = value;
+            }
+        }
+        public int PriceModifier
+        {
+            get
+            {
+                return priceModifier;
             }
         }
         public int AmountOfCupsInPitcher

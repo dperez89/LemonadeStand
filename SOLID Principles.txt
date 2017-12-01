@@ -1,0 +1,26 @@
+Single Responsibility Principle
+
+In my UI class, I have methods that have the single responsibility of taking in userInput
+that is passed in as a parameter and uses logic to determine if the input is valid when comparing
+it to the context of a list of options that are also passed in as a parameter. 
+
+For example, my game displays a menu where the user is prompted to make their selection
+by keying in the number associated with the option they want to choose. The user would then
+key in the number on the keyboard, and that input is passed in along with a list of a strings
+that represent the menu option numbers from the UI display. If the user input that was passed
+in is present on that list of options, then the user input is passed back to the method that called
+for that validation, otherwise the program is instructed to let the user know their input is invalid 
+and simply calls for the method to gain their input again, repeating the process.
+
+Open-Closed Principle
+
+I feel that I achieve this design principle in that I am consistently avoiding hardcoding any 
+values in my program to the best of my ability or notice. I specifically enjoy one aspect of my
+program that I am able to make logical calculations through referencing member variables in my recipe and day
+classes that assist in generating a value to use for evaluation in the success or failure of a sale. 
+For example, my Recipe class includes a price for the lemonade that I am selling. It also includes a modifier 
+to adapt that price into a contextually more appropriate integer to be used when helping to determine if my 
+lemonade is less or more attractive through its price. Both of those variables are called and used for on-the-spot
+logic in my PointOfSale class instead of hardcoding their values. I can entirely change the effect that my recipe has
+in the PointOfSale class' RunBusinessDay method by only having to change a singular value of a member variable in the
+Recipe class. 
